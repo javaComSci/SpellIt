@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{107E724A-A45B-4D03-ACD3-4CFE9F4505FB}|Default">
+  <MonoDevelop.Ide.ItemProperties.SpellItBackend FirstBuild="True" PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SpellItBackend/Controllers/WeatherForecastController.cs">
+    <Files>
+      <File FileName="SpellItBackend/Controllers/WeatherForecastController.cs" Line="8" Column="23" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SpellItBackend" expanded="True">
+            <Node name="SpellItBackend" expanded="True" selected="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Properties" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
