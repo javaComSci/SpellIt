@@ -1,20 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
-import { Practice } from './Practice';
+import { Practice } from './Practice/Practice';
+import { UserHome } from './UserHome/UserHome';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<App />} />
+          <Route path="userHome" element={<UserHome />} />
           <Route path="practice" element={<Practice />} />
       </Routes>
     </BrowserRouter>

@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import { Login } from './Login';
-import { WordLists } from './WordLists';
+import { WordLists } from '../WordLists/WordLists';
+import { Header } from '../Header/Header';
 
 export class UserHome extends Component {
     constructor(props: any) {
@@ -12,10 +12,10 @@ export class UserHome extends Component {
     }
 
     render() {
-        let renderObj = !(this.state as any).isAuthenticated ? <Login /> : <WordLists />
         return <div>
+            <Header />
             <h1> User Home </h1> 
-            {renderObj}
+            <WordLists />
         </div>
     }
 }
