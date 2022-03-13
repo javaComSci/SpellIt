@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SpellItBackend.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace SpellItBackend.Controllers
 {
@@ -11,22 +14,22 @@ namespace SpellItBackend.Controllers
     [Route("[controller]")]
     public class WordListsController : ControllerBase
     {
-        private static readonly string[] DefaultWordList = new[]
-        {
-            "Avacado", "Think", "Run"
-        };
 
         private readonly ILogger<WordListController> _logger;
 
-        public WordListsController(ILogger<WordListController> logger)
+        private WordsContext _context;
+
+
+        public WordListsController(ILogger<WordListController> logger, WordsContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<WordList> Get()
         {
-            return DefaultWordList;
+            return _context.WordLists;
         }
     }
 }
