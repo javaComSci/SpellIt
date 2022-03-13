@@ -12,9 +12,14 @@ export class WordLists extends Component {
     }
 
     fetchWordLists() {
-        // TODO: Change this to wordlists
-        fetch("https://localhost:5001/wordlists")
-            .then(res => res.json())
+        fetch("https://localhost:5001/wordlists", 
+        {
+            mode: 'no-cors'
+        })
+            .then(res => {
+                console.log(res)
+                return res.body
+            })
             .then(
                 (result) => {
                     this.setState({
