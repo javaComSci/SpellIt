@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using SpellItBackend.Models;
 
 namespace SpellItBackend
 {
@@ -27,6 +29,7 @@ namespace SpellItBackend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<WordsContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:WordsContext"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
