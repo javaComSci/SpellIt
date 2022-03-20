@@ -1,7 +1,11 @@
-import { Component } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Component, useMemo } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useTable } from 'react-table';
+import WordListTable from '../Common/Table';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
-export class WordLists extends Component {
+export class WordLists extends Component <any, any>{
+
     constructor(props: any) {
         super(props);
 
@@ -12,22 +16,19 @@ export class WordLists extends Component {
     }
 
     fetchWordLists() {
-        fetch("https://localhost:5001/wordlists", 
-        {
-            mode: 'no-cors'
-        })
+        fetch("/wordlists")
             .then(res => {
-                console.log(res)
-                return res.body
+                return res.json()
             })
             .then(
                 (result) => {
                     this.setState({
                         isLoading: false,
-                        wordLists: result.items
+                        wordLists: result
                     });
                 },
                 (error) => {
+                    console.log(error)
                     this.setState({
                         isLoading: false,
                         error: error
@@ -40,6 +41,13 @@ export class WordLists extends Component {
         this.fetchWordLists();
     }
     
+    onWordListClick = (e: any) => {
+        console.log(e)
+        this.setState({
+            navigatePage: e
+        })
+    }
+
     render() {
         if ((this.state as any).isLoading) {
             return <div> <p> Fetching data. Please wait... </p></div>
@@ -49,6 +57,11 @@ export class WordLists extends Component {
             return <div> <p> There was an error fetching your data. </p></div>
         }
 
-        return <div> <h1> (this.state as any).wordLists </h1> </div>
+        if ((this.state as any).navigatePage) {
+            return  <Link to="/practice">YES</Link>
+        }
+        return <div> 
+            <WordListTable rows={this.state.wordLists} onWordListClick={this.onWordListClick}/>
+        </div>
     }
 }
