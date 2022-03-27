@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTable } from 'react-table';
 import WordListTable from '../Common/Table';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import ProfileContent from "../Common/TokenFetcher";
 
 export class WordLists extends Component <any, any>{
 
@@ -15,30 +16,24 @@ export class WordLists extends Component <any, any>{
         }
     }
 
-    fetchWordLists() {
-        fetch("/wordlists")
-            .then(res => {
-                return res.json()
+    setData = (data: any) => {
+        console.log("SET DATA IS CALLED")
+        console.log(data)
+        data.json()
+        .then((res: any) => 
+            this.setState({
+                isLoading: false,
+                wordLists: res
             })
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoading: false,
-                        wordLists: result
-                    });
-                },
-                (error) => {
-                    console.log(error)
-                    this.setState({
-                        isLoading: false,
-                        error: error
-                    });
-                }
-            )
+        );
+        
     }
 
-    componentDidMount() {
-        this.fetchWordLists();
+    setError = (error: any) => {
+        this.setState({
+            isLoading: false,
+            error: error
+        });
     }
     
     onWordListClick = (e: any) => {
@@ -50,16 +45,16 @@ export class WordLists extends Component <any, any>{
 
     render() {
         if ((this.state as any).isLoading) {
-            return <div> <p> Fetching data. Please wait... </p></div>
+            return <div>
+                <p> Fetching data. Please wait... </p>
+                <ProfileContent setData={this.setData} setError={this.setError} api={"/wordlists"} httpMethod={"GET"} data={{}}/>
+            </div>
         }
 
         if ((this.state as any).error) {
             return <div> <p> There was an error fetching your data. </p></div>
         }
 
-        if ((this.state as any).navigatePage) {
-            return  <Link to="/practice">YES</Link>
-        }
         return <div> 
             <WordListTable rows={this.state.wordLists} onWordListClick={this.onWordListClick}/>
         </div>

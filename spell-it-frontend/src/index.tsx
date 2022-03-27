@@ -13,7 +13,6 @@ import {
   Route,
 } from "react-router-dom";
 import { Practice } from './Practice/Practice';
-import { UserHome } from './UserHome/UserHome';
 
 const msalInstance = new PublicClientApplication(msalConfig);
 
@@ -23,7 +22,6 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
             <Route path="/" element={<App />} />
-            <Route path="userHome" element={<UserHome />} />
             <Route path="practice" element={<Practice />} />
         </Routes>
       </BrowserRouter>

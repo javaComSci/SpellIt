@@ -1,20 +1,17 @@
 import { Component } from 'react';
 import { WordLists } from '../WordLists/WordLists';
-import { Header } from '../Header/Header';
+import Navbar from "react-bootstrap/Navbar";
 
 export class UserHome extends Component {
     constructor(props: any) {
         super(props);
-
-        this.state = {
-            isAuthenticated: false
-        };
     }
 
     render() {
         return <div>
-            <Header />
-            <h1> User Home </h1> 
+            <Navbar bg="light" variant="dark">
+                Your Word Lists
+            </Navbar>
             <WordLists />
         </div>
     }
