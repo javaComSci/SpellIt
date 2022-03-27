@@ -1,4 +1,4 @@
-import { clientId } from '../../../SpellItSecrets/localSecrets';
+import { clientId } from './localSecrets';
 
 export const msalConfig = {
     auth: {
