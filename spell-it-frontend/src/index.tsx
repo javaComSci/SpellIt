@@ -1,3 +1,7 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+import { PublicClientApplication } from "@azure/msal-browser";
+import { MsalProvider } from "@azure/msal-react";
+import { msalConfig } from "./authConfig";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -11,15 +15,19 @@ import {
 import { Practice } from './Practice/Practice';
 import { UserHome } from './UserHome/UserHome';
 
+const msalInstance = new PublicClientApplication(msalConfig);
+
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="userHome" element={<UserHome />} />
-          <Route path="practice" element={<Practice />} />
-      </Routes>
-    </BrowserRouter>
+    <MsalProvider instance={msalInstance}>
+      <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="userHome" element={<UserHome />} />
+            <Route path="practice" element={<Practice />} />
+        </Routes>
+      </BrowserRouter>
+    </MsalProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

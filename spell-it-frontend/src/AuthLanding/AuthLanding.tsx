@@ -1,21 +1,19 @@
 import { Component } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { SignedIn } from './SignedIn';
+import { SignIn } from './SignIn';
+import { useMsal } from "@azure/msal-react";
+import { loginRequest } from "../authConfig";
+import Button from "react-bootstrap/Button";
+import { useIsAuthenticated } from "@azure/msal-react";
+import Navbar from "react-bootstrap/Navbar";
 
-export class AuthLanding extends Component {
-    constructor(props: any) {
-        super(props);
+export const AuthLanding = (props: any) => {
+    const isAuthenticated = useIsAuthenticated();
+    console.log(isAuthenticated);
 
-        this.state = {
-            isAuthenticated: true
-        };
-    }
-
-    render() {
-        let loginDiv = <div> <h1> Login </h1></div>;
-        let renderObj = !(this.state as any).isAuthenticated ? loginDiv : <SignedIn />;
-        return <div>
-            {renderObj}
+    return (
+        <div>
+            { isAuthenticated ? <SignedIn />: <SignIn /> }
         </div>
-    }
-}
+    );
+};
