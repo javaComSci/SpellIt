@@ -28,7 +28,7 @@ export function SpellItDrawing() {
     let wordStartVertical = 100;
 
     let description = "Spell It" + 
-    " will allow you to learn spellings efficiently. To move forward, " +
+    " will allow you to learn words efficiently. To move forward, " +
     "please sign in.";
 
     const setup = (p5: any, canvasParentRef: any) => {
