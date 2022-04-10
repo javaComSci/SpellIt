@@ -2,6 +2,7 @@ import { SignIn } from '../AuthLanding/SignIn';
 import { SignOut } from '../AuthLanding/SignOut';
 import { useIsAuthenticated } from "@azure/msal-react";
 import Navbar from "react-bootstrap/Navbar";
+import './PageLayout.css';
 
 export const PageLayout = (props: any) => {
     const isAuthenticated = useIsAuthenticated();
