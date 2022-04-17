@@ -1,7 +1,6 @@
 import { loginRequest } from "../authConfig";
 import { useMsal } from "@azure/msal-react";
 import { useState, useEffect } from 'react';
-import Button from "react-bootstrap/Button";
 
 export default function ProfileContent(props: any) {
     const { instance, accounts, inProgress } = useMsal();
@@ -17,18 +16,28 @@ export default function ProfileContent(props: any) {
             account: accounts[0]
         };
 
+        console.log(request);
+
         instance.acquireTokenSilent(request).then((response) => {
-            setAccessToken(response.accessToken);
+            console.log(response)
+            setAccessToken(response.idToken);
         }).catch((e) => {
             instance.acquireTokenPopup(request).then((response) => {
-                setAccessToken(response.accessToken);
+                setAccessToken(response.idToken);
             });
         });
     }
 
     function Fetch(api: string, httpMethod: string, data: object) {
         if (httpMethod == "GET") {
-            fetch(api)
+            console.log(accessToken)
+            fetch(api, {
+                method: "GET",
+                headers: new Headers({
+                    'Authorization': `Bearer ${accessToken}`,
+                    "accepts":"application/json"
+                }), 
+            })
             .then((res) => {
                 setData(res);
             },
