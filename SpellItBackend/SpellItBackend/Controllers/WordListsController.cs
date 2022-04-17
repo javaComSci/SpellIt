@@ -7,6 +7,9 @@ using Microsoft.Extensions.Logging;
 using SpellItBackend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SpellItBackend.Controllers
 {
@@ -26,6 +29,7 @@ namespace SpellItBackend.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpGet]
         public IEnumerable<WordList> Get()
         {
