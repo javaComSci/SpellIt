@@ -17,10 +17,10 @@ export default function ProfileContent(props: any) {
         };
 
         instance.acquireTokenSilent(request).then((response) => {
-            setAccessToken(response.accessToken);
+            setAccessToken(response.idToken);
         }).catch((e) => {
             instance.acquireTokenPopup(request).then((response) => {
-                setAccessToken(response.accessToken);
+                setAccessToken(response.idToken);
             });
         });
     }
@@ -43,6 +43,7 @@ export default function ProfileContent(props: any) {
                 }
             })
             .catch(err => {
+                console.log("PROPS", props)
                 console.log(err);
                 props.setError(err);
             });

@@ -33,6 +33,7 @@ namespace SpellItBackend.Controllers
         [HttpGet]
         public IEnumerable<WordList> Get()
         {
+            Console.WriteLine(HttpContext.User);
             return _context.WordLists;
         }
     }

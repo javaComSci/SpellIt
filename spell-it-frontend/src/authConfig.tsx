@@ -3,7 +3,7 @@ import { clientId } from './localSecrets';
 export const msalConfig = {
     auth: {
       clientId: clientId,
-      authority: "https://login.microsoftonline.com/a5bfd95f-9338-48fe-b9e3-b423e08b99e3", // This is a URL (e.g. https://login.microsoftonline.com/{your tenant ID})
+      authority: "https://login.microsoftonline.com/common", // This is a URL (e.g. https://login.microsoftonline.com/{your tenant ID})
       redirectUri: "http://localhost:3000",
     },
     cache: {

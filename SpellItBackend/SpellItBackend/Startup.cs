@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using SpellItBackend.Models;
+using Microsoft.Identity.Web;
 
 namespace SpellItBackend
 {
@@ -29,22 +30,9 @@ namespace SpellItBackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
             services.AddControllers();
             services.AddDbContext<WordsContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:WordsContext"]));
-            
-            services.AddAuthentication(option =>
-            {
-                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-            }).AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters 
-                {
-                    ValidateLifetime = false,
-                    IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-                };
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
