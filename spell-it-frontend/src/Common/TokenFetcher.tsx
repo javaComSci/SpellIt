@@ -16,21 +16,17 @@ export default function ProfileContent(props: any) {
             account: accounts[0]
         };
 
-        console.log(request);
-
         instance.acquireTokenSilent(request).then((response) => {
-            console.log(response)
-            setAccessToken(response.idToken);
+            setAccessToken(response.accessToken);
         }).catch((e) => {
             instance.acquireTokenPopup(request).then((response) => {
-                setAccessToken(response.idToken);
+                setAccessToken(response.accessToken);
             });
         });
     }
 
     function Fetch(api: string, httpMethod: string, data: object) {
         if (httpMethod == "GET") {
-            console.log(accessToken)
             fetch(api, {
                 method: "GET",
                 headers: new Headers({
@@ -39,11 +35,16 @@ export default function ProfileContent(props: any) {
                 }), 
             })
             .then((res) => {
-                setData(res);
-            },
-            (err) => {
+                if (res.status !== 200) {
+                    throw new Error(res.statusText)
+                }
+                else {
+                    props.setData(res);
+                }
+            })
+            .catch(err => {
                 console.log(err);
-                setError(err);
+                props.setError(err);
             });
         }
     }
@@ -51,7 +52,6 @@ export default function ProfileContent(props: any) {
     useEffect(() => {
         let isSubscribed = true;
         if (accessToken) {
-            console.log(accessToken)
             if (!data && !error) {
                 Fetch(props.api, props.httpMethod, props.data)   
             }

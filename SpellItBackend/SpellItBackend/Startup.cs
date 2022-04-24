@@ -31,6 +31,7 @@ namespace SpellItBackend
         {
             services.AddControllers();
             services.AddDbContext<WordsContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:WordsContext"]));
+            
             services.AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
