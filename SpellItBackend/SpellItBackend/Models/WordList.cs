@@ -13,6 +13,6 @@ namespace SpellItBackend.Models {
         public string WordListName { get; set; }
 
         [Required]
-        public int OwningUserId { get; set; }
+        public string ObjectId { get; set; }
     }
 }

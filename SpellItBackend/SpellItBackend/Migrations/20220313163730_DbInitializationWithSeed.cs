@@ -12,8 +12,7 @@ namespace SpellItBackend.Migrations
                 {
                     WordListId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    WordListName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OwningUserId = table.Column<int>(type: "int", nullable: false)
+                    WordListName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,8 +35,8 @@ namespace SpellItBackend.Migrations
 
             migrationBuilder.InsertData(
                 table: "WordLists",
-                columns: new[] { "WordListId", "OwningUserId", "WordListName" },
-                values: new object[] { 1, 1, "vegetables" });
+                columns: new[] { "WordListId", "WordListName" },
+                values: new object[] { 1, "vegetables" });
 
             migrationBuilder.InsertData(
                 table: "Words",

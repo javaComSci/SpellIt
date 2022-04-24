@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpellItBackend.Models;
 
 namespace SpellItBackend.Migrations
 {
     [DbContext(typeof(WordsContext))]
-    partial class WordsContextModelSnapshot : ModelSnapshot
+    [Migration("20220424182408_RemoveColumn")]
+    partial class RemoveColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

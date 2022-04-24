@@ -17,13 +17,12 @@ namespace SpellItBackend.Controllers
     [Route("[controller]")]
     public class WordListsController : ControllerBase
     {
-
         private readonly ILogger<WordListController> _logger;
 
         private WordsContext _context;
 
 
-        public WordListsController(ILogger<WordListController> logger, WordsContext context)
+        public WordListsController(WordsContext context, ILogger<WordListController> logger)
         {
             _logger = logger;
             _context = context;
@@ -31,10 +30,16 @@ namespace SpellItBackend.Controllers
 
         [Authorize]
         [HttpGet]
-        public IEnumerable<WordList> Get()
+        public async Task<IEnumerable<WordList>> Get()
         {
-            Console.WriteLine(HttpContext.User);
-            return _context.WordLists;
+            var objectId = HttpContext.User?.Claims?.FirstOrDefault(c => c.Type.Equals("http://schemas.microsoft.com/identity/claims/objectidentifier", StringComparison.OrdinalIgnoreCase))?.Value;
+            Console.WriteLine("Oid" + objectId);
+
+            var userWordLists = await _context.WordLists
+                .Where(x => x.ObjectId == objectId)
+                .ToListAsync();
+
+            return userWordLists;
         }
     }
 }

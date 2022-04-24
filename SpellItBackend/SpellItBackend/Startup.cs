@@ -31,8 +31,10 @@ namespace SpellItBackend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
-            services.AddControllers();
+
             services.AddDbContext<WordsContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:WordsContext"]));
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

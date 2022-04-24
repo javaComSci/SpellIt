@@ -54,9 +54,6 @@ namespace SpellItBackend.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("OwningUserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("WordListName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -69,7 +66,6 @@ namespace SpellItBackend.Migrations
                         new
                         {
                             WordListId = 1,
-                            OwningUserId = 1,
                             WordListName = "vegetables"
                         });
                 });
