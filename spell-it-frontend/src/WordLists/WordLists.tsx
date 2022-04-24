@@ -39,7 +39,7 @@ export class WordLists extends Component <any, any>{
     onWordListClick = (e: any) => {
         console.log(e)
         this.setState({
-            navigatePage: e
+            navigateToPractice: e
         })
     }
 
