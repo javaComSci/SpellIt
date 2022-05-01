@@ -36,7 +36,21 @@ export class WordLists extends Component <any, any>{
         });
     }
     
-    onWordListClick = (e: any) => {
+    onWordListClickPractice = (e: any) => {
+        console.log(e)
+        this.setState({
+            navigateToPractice: e
+        })
+    }
+
+    onWordListClickUpdate = (e: any) => {
+        console.log(e)
+        this.setState({
+            navigateToPractice: e
+        })
+    }
+
+    onWordListClickDelete = (e: any) => {
         console.log(e)
         this.setState({
             navigateToPractice: e
@@ -56,7 +70,11 @@ export class WordLists extends Component <any, any>{
         }
 
         return <div> 
-            <WordListTable rows={this.state.wordLists} onWordListClick={this.onWordListClick}/>
+            <WordListTable
+                rows={this.state.wordLists}
+                onWordListClickPractice={this.onWordListClickPractice}
+                onWordListClickUpdate={this.onWordListClickUpdate}
+                onWordListClickDelete={this.onWordListClickDelete}/>
         </div>
     }
 }

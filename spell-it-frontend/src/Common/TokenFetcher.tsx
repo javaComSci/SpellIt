@@ -43,8 +43,6 @@ export default function ProfileContent(props: any) {
                 }
             })
             .catch(err => {
-                console.log("PROPS", props)
-                console.log(err);
                 props.setError(err);
             });
         }
