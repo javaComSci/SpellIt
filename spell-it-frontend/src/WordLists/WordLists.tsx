@@ -17,8 +17,6 @@ export class WordLists extends Component <any, any>{
     }
 
     setData = (data: any) => {
-        console.log("SET DATA IS CALLED")
-        console.log(data)
         data.json()
         .then((res: any) => 
             this.setState({

@@ -41,16 +41,17 @@ namespace SpellItBackend.Controllers
 
         [Authorize]
         [HttpPost]
-        public void Post([FromBody]string wordlistname)
+        public void Post([FromBody]WordListCreationInput wordListCreationInput)
         {
             var objectId = HttpContext.User?.Claims?.FirstOrDefault(c => c.Type.Equals("http://schemas.microsoft.com/identity/claims/objectidentifier", StringComparison.OrdinalIgnoreCase))?.Value;
             Console.WriteLine("Oid" + objectId);
 
             var wordList = new WordList() {
-                WordListName = wordlistname,
+                WordListName = wordListCreationInput.Name,
                 ObjectId = objectId
             };
-            var entry = _context.WordLists.Add(null);
+            var entry = _context.WordLists.Add(wordList);
+            _context.SaveChanges();
         }
     }
 }

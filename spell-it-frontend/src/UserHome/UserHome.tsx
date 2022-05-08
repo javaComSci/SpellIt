@@ -12,7 +12,7 @@ export class UserHome extends Component {
     }
 
     onAddition = () => {
-        console.log("On addition")
+        console.log("ON ADDITION")
         this.setState({
             update: (this.state as any).update + 1
         })

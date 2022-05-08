@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import { Link } from "react-router-dom";
 
 export default class WordListTable extends Component <any, any> {
     constructor(props: any) {
@@ -40,7 +41,10 @@ export default class WordListTable extends Component <any, any> {
                     </TableCell>
                     <TableCell component="th" scope="row" align="left">
                         <ModeEditOutlineOutlinedIcon
-                            onClick={() => (this.props as any).onWordListClickUpdate(row.wordListId)}
+                            // component={Link} to="/edit"
+                            onClick={event =>  window.location.href='edit'}
+                            // onClick={() => history.push('/edit')}
+                            // onClick={() => (this.props as any).onWordListClickUpdate(row.wordListId)}
                             key={row.wordListId}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}/>
                     </TableCell>

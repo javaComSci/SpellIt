@@ -6,40 +6,61 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import ProfileContent from "../Common/TokenFetcher";
 import MakeApiCall from '../Common/TokenFetch';
 
+// start out with open = false, save = false
+// user clicks save
+// open = false, save = true
+// backend call is made to save
+// 
+
 export default function FormDialog(props: any) {
-  console.log("CALLING THE FORM DIALOG")
-  const [open, setOpen] = React.useState(false);
-  const [save, setSave] = React.useState(false);
+  const [openSave, setOpenSave] = React.useState({open: false, save: false});
+
+  let wordListName: string =  "";
+
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+
+  // const handleSave = () => {
+  //   setSave(true);
+  // }
+
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+
+  const handleClose = () => {
+    setOpenSave({open: false, save: false})
+  };
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setOpenSave({open: true, save: false})
   };
 
   const handleSave = () => {
-    setSave(true);
+    var elementId = "listTitle";
+    wordListName = (document.getElementById(elementId) as HTMLInputElement).value;
+    setOpenSave({open: false, save: true})
   }
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  if (save) {
-    console.log("SAVE IS CLIKED");
-
-    // make API call
-    MakeApiCall("/wordlists", "POST", {wordlistname: "abc"})
-      .then(() => console.log("FETCHING"))
+  const handleSaveDone = () => {
+    setOpenSave({open: false, save: false})
   }
 
+  if (openSave.save == true) {
+    MakeApiCall("/wordlist", "POST", {name: wordListName});
+    handleSaveDone();
+  }
+
+  console.log("REndering", openSave)
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
         Add Word List
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={openSave.open} onClose={handleClose}>
         <DialogTitle>Add Word List</DialogTitle>
         <DialogContent>
           <DialogContentText>

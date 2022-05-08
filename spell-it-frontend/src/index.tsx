@@ -9,10 +9,11 @@ import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
-  Routes,
+  Routes, 
   Route,
 } from "react-router-dom";
 import { Practice } from './Practice/Practice';
+import EditWords from './EditWords/EditWords';
 
 const msalInstance = new PublicClientApplication(msalConfig);
 
@@ -23,6 +24,7 @@ ReactDOM.render(
         <Routes>
             <Route path="/" element={<App />} />
             <Route path="practice" element={<Practice />} />
+            <Route path="edit" element={<EditWords />} />
         </Routes>
       </BrowserRouter>
     </MsalProvider>

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "IkBbSoOTCYWAOUS66Jy32bt5A+Jwtup6vQ7A5p/4VDCFNDC6rcW8lGSLucMH1fCZwWhT/6blGl2q+lFBz3zwpw==",
+  "dgSpecHash": "uoQ7HgcChcFAHpqWi+lVvDgL2LNhCNtzr3rFHwX//NHcGZqBekqY4bA10EJtY5fuT1CBO2nVrWMKuZQx981SrQ==",
   "success": true,
   "projectFilePath": "/Users/indhu/Documents/SpellIt/SpellItBackend/SpellItBackend/SpellItBackend.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,8 @@
     "/Users/indhu/.nuget/packages/microsoft.aspnetcore.cryptography.internal/5.0.8/microsoft.aspnetcore.cryptography.internal.5.0.8.nupkg.sha512",
     "/Users/indhu/.nuget/packages/microsoft.aspnetcore.dataprotection/5.0.8/microsoft.aspnetcore.dataprotection.5.0.8.nupkg.sha512",
     "/Users/indhu/.nuget/packages/microsoft.aspnetcore.dataprotection.abstractions/5.0.8/microsoft.aspnetcore.dataprotection.abstractions.5.0.8.nupkg.sha512",
+    "/Users/indhu/.nuget/packages/microsoft.aspnetcore.jsonpatch/5.0.16/microsoft.aspnetcore.jsonpatch.5.0.16.nupkg.sha512",
+    "/Users/indhu/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/5.0.16/microsoft.aspnetcore.mvc.newtonsoftjson.5.0.16.nupkg.sha512",
     "/Users/indhu/.nuget/packages/microsoft.bcl.asyncinterfaces/1.0.0/microsoft.bcl.asyncinterfaces.1.0.0.nupkg.sha512",
     "/Users/indhu/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/indhu/.nuget/packages/microsoft.data.sqlclient/2.0.1/microsoft.data.sqlclient.2.0.1.nupkg.sha512",
@@ -53,6 +55,8 @@
     "/Users/indhu/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/Users/indhu/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
     "/Users/indhu/.nuget/packages/microsoft.win32.systemevents/5.0.0/microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "/Users/indhu/.nuget/packages/newtonsoft.json/12.0.2/newtonsoft.json.12.0.2.nupkg.sha512",
+    "/Users/indhu/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/Users/indhu/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "/Users/indhu/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "/Users/indhu/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",

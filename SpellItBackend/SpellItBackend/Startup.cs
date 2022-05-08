@@ -15,6 +15,7 @@ using System.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using SpellItBackend.Models;
 using Microsoft.Identity.Web;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace SpellItBackend
 {
@@ -34,7 +35,7 @@ namespace SpellItBackend
 
             services.AddDbContext<WordsContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:WordsContext"]));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
