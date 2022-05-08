@@ -7,8 +7,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ProfileContent from "../Common/TokenFetcher";
+import MakeApiCall from '../Common/TokenFetch';
 
-export default function FormDialog() {
+export default function FormDialog(props: any) {
+  console.log("CALLING THE FORM DIALOG")
   const [open, setOpen] = React.useState(false);
   const [save, setSave] = React.useState(false);
 
@@ -25,8 +27,11 @@ export default function FormDialog() {
   };
 
   if (save) {
-    console.log("SAVE IS CLIKED")
-    return <ProfileContent api={"/wordlists"} httpMethod={"GET"} data={{}}/>
+    console.log("SAVE IS CLIKED");
+
+    // make API call
+    MakeApiCall("/wordlists", "POST", {wordlistname: "abc"})
+      .then(() => console.log("FETCHING"))
   }
 
   return (
