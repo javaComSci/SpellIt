@@ -53,5 +53,21 @@ namespace SpellItBackend.Controllers
             var entry = _context.WordLists.Add(wordList);
             _context.SaveChanges();
         }
+
+        [Authorize]
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            Console.WriteLine("Trying to delete");
+            var objectId = HttpContext.User?.Claims?.FirstOrDefault(c => c.Type.Equals("http://schemas.microsoft.com/identity/claims/objectidentifier", StringComparison.OrdinalIgnoreCase))?.Value;
+            Console.WriteLine("Oid" + objectId);
+
+            // var entry = _context.WordLists
+            //     .HasOptional
+
+            var list = _context.WordLists.Where(x => x.WordListId == id).Single<WordList>();
+            _context.Remove(list);
+            _context.SaveChanges();
+        }
     }
 }

@@ -30,6 +30,12 @@ namespace SpellItBackend.Models {
             //         WordName = "avacado"
             //     }
             // );
+
+            modelBuilder.Entity<Word>()
+                .HasOne<WordList>()
+                .WithMany()
+                .HasForeignKey(word => word.WordListId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

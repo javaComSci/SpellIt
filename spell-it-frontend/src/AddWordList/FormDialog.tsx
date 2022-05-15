@@ -19,18 +19,6 @@ export default function FormDialog(props: any) {
 
   let wordListName: string =  "";
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleSave = () => {
-  //   setSave(true);
-  // }
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
   const handleClose = () => {
     setOpenSave({open: false, save: false})
   };
@@ -54,7 +42,6 @@ export default function FormDialog(props: any) {
     handleSaveDone();
   }
 
-  console.log("REndering", openSave)
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>

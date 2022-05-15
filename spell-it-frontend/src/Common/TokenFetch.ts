@@ -12,13 +12,29 @@ const request = {
 
 
 export default function MakeApiCall(api: string, httpMethod: string, data: object) {
-    return TokenFetch(api, httpMethod, data);
+    return myMSALObj.acquireTokenSilent(request)
+        .then(tokenResponse => {
+            return tokenResponse.idToken;
+        })
+        .then(accessToken => {
+            return Fetch(api, httpMethod, data, accessToken);
+        })
+        .catch(error => {
+            console.warn("silent token acquisition fails. acquiring token using popup");
+            // fallback to interaction when silent call fails
+            return myMSALObj.acquireTokenPopup(request)
+                .then(tokenResponse => {
+                    let accessToken= tokenResponse.idToken;
+                    Fetch(api, httpMethod, data, accessToken);
+                }).catch(error => {
+                    console.error(error);
+                });
+            })
 }
 
 function Fetch(api: string, httpMethod: string, data: object, accessToken: any) {
-
     if (httpMethod == "GET") {
-        fetch(api, {
+        return fetch(api, {
             method: "GET",
             headers: new Headers({
                 'Authorization': `Bearer ${accessToken}`,
@@ -35,7 +51,7 @@ function Fetch(api: string, httpMethod: string, data: object, accessToken: any) 
         });
     }
     else if (httpMethod == "POST") {
-        fetch(api, {
+        return fetch(api, {
             method: "post",
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
@@ -53,25 +69,30 @@ function Fetch(api: string, httpMethod: string, data: object, accessToken: any) 
             }
         });
     }
+    else if (httpMethod == "DELETE") {
+        console.log("going to fetch the data")
+        return fetch(api, {
+            method: "delete",
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify(data)
+            })
+        .then( (res) => { 
+            console.log("RETURN")
+            if (res.status !== 200) {
+                throw new Error(res.statusText)
+            }
+            else {
+                console.log("IN post return")
+                return res;
+            }
+        });
+    }
 }
 
 export function TokenFetch(api: string, httpMethod: string, data: object) {
-    return myMSALObj.acquireTokenSilent(request)
-        .then(tokenResponse => {
-            let accessToken = tokenResponse.idToken;
-            Fetch(api, httpMethod, data, accessToken);
-        })
-        .catch(error => {
-            console.warn("silent token acquisition fails. acquiring token using popup");
-            // fallback to interaction when silent call fails
-            return myMSALObj.acquireTokenPopup(request)
-                .then(tokenResponse => {
-                    let accessToken= tokenResponse.idToken;
-                    Fetch(api, httpMethod, data, accessToken);
-                }).catch(error => {
-                    console.error(error);
-                });
-            })
+    
 }
 
 
