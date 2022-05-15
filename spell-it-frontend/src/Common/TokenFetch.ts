@@ -25,9 +25,7 @@ export default function MakeApiCall(api: string, httpMethod: string, data: objec
             return myMSALObj.acquireTokenPopup(request)
                 .then(tokenResponse => {
                     let accessToken= tokenResponse.idToken;
-                    Fetch(api, httpMethod, data, accessToken);
-                }).catch(error => {
-                    console.error(error);
+                    return Fetch(api, httpMethod, data, accessToken);
                 });
             })
 }

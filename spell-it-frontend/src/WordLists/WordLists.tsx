@@ -95,7 +95,6 @@ export class WordLists extends Component <any, any>{
         console.log("Delete" + e);
         MakeApiCall("/wordlist/" + e, "DELETE", {})
             .then((res) => {
-                console.log("succss")
                 let updatedWordLists = (this.state as any).wordLists.filter((word: any) => word.wordListId != e)
                 this.setState({
                     wordLists: updatedWordLists,
@@ -103,7 +102,6 @@ export class WordLists extends Component <any, any>{
                 })
             })
             .catch ((err) => {
-                console.log(err)
                 this.setState({
                     wordLists: [],
                     error: err
