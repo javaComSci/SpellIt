@@ -5,6 +5,7 @@ import WordListTable from '../Common/Table';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import ProfileContent from "../Common/TokenFetcher";
 import MakeApiCall from '../Common/TokenFetch';
+import { Navigate } from "react-router-dom";
 
 export class WordLists extends Component <any, any>{
 
@@ -87,7 +88,7 @@ export class WordLists extends Component <any, any>{
     onWordListClickUpdate = (e: any) => {
         console.log(e)
         this.setState({
-            navigateToPractice: e
+            navigateToEdit: e
         })
     }
 
@@ -112,6 +113,11 @@ export class WordLists extends Component <any, any>{
     render() {
         if ((this.state as any).error) {
             return <div> <p> There was an error fetching your data. </p></div>
+        }
+
+        if ((this.state as any).navigateToEdit) {
+            let navigateTo = "/editwords/?list=" + (this.state as any).navigateToEdit;
+            return <Navigate to={navigateTo} replace={true}/>
         }
 
         return <div> 

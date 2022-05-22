@@ -13,20 +13,13 @@ import {
   Route,
 } from "react-router-dom";
 import { Practice } from './Practice/Practice';
-import EditWords from './EditWords/EditWords';
 
 const msalInstance = new PublicClientApplication(msalConfig);
 
 ReactDOM.render(
   <React.StrictMode>
     <MsalProvider instance={msalInstance}>
-      <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="practice" element={<Practice />} />
-            <Route path="edit" element={<EditWords />} />
-        </Routes>
-      </BrowserRouter>
+      <App />
     </MsalProvider>
   </React.StrictMode>,
   document.getElementById('root')
