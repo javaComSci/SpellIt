@@ -36,7 +36,6 @@ export class EditWords extends Component <any, any>{
       }
 
     onWordDelete = (e: any) => {
-        console.log("Delete" + e);
         MakeApiCall("/word/" + e, "DELETE", {})
             .then((res) => {
                 let updatedWords = (this.state as any).words.filter((word: any) => word.wordId != e)
@@ -53,11 +52,33 @@ export class EditWords extends Component <any, any>{
             })
     }
 
+    onWordAdd = (e: any, wordListId: any) => {
+        MakeApiCall("/word", "POST", {name: e, wordListId: wordListId })
+            .then((data) => {
+                return data!.json();
+            })
+            .then((res) => {
+                this.setState({
+                    words: res,
+                    error: undefined
+                })
+            })
+            .catch ((err) => {
+                console.log(err)
+                this.setState({
+                    words: [],
+                    error: err
+                })
+            })
+    }
+
     render() {
         return <div>
              <WordTable
                 rows={this.state.words}
-                onWordDelete={this.onWordDelete}/>;
+                onWordDelete={this.onWordDelete}
+                onWordAdd={this.onWordAdd}
+                wordListId={this.state.list}/>;
         </div>;
     }
 }

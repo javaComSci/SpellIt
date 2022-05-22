@@ -34,16 +34,20 @@ namespace SpellItBackend.Controllers
 
         [Authorize]
         [HttpPost]
-        public void Post([FromBody]WordListCreationInput wordListCreationInput)
+        public async Task<IEnumerable<Word>> Post([FromBody]WordCreationInput wordCreationInput)
         {
             var objectId = HttpContext.User?.Claims?.FirstOrDefault(c => c.Type.Equals("http://schemas.microsoft.com/identity/claims/objectidentifier", StringComparison.OrdinalIgnoreCase))?.Value;
 
-            var wordList = new WordList() {
-                WordListName = wordListCreationInput.Name,
-                ObjectId = objectId
+            var word = new Word() {
+                WordListId = wordCreationInput.WordListId,
+                WordName = wordCreationInput.Name
             };
-            var entry = _context.WordLists.Add(wordList);
+            var entry = _context.Words.Add(word);
             _context.SaveChanges();
+
+            var words = await _context.Words.Where(x => x.WordListId == wordCreationInput.WordListId).ToListAsync();
+
+            return words;
         }
 
         [Authorize]

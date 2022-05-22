@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { TextField } from '@mui/material';
 import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -30,21 +31,40 @@ export default class WordTable extends Component <any, any> {
                 <TableBody>
                 {(this.props as any).rows.map((row: any) => (
                     <TableRow>
-                    <TableCell component="th" scope="row" align="left">
-                        <DeleteOutlineOutlinedIcon
-                            onClick={() => (this.props as any).onWordDelete(row.wordId)}
-                            key={row.wordListId}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}/>
-                    </TableCell>
-                    <TableCell component="th" scope="row" align="left">
-                        {row.wordId}
-                    </TableCell>
-                    <TableCell component="th" scope="row" align="left">
-                        {row.wordListId}
-                    </TableCell>
-                    <TableCell align="left">{row.wordName}</TableCell>
+                        <TableCell component="th" scope="row" align="left">
+                            <DeleteOutlineOutlinedIcon
+                                onClick={() => (this.props as any).onWordDelete(row.wordId)}
+                                key={row.wordListId}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}/>
+                        </TableCell>
+                        <TableCell component="th" scope="row" align="left">
+                            {row.wordId}
+                        </TableCell>
+                        <TableCell component="th" scope="row" align="left">
+                            {row.wordListId}
+                        </TableCell>
+                        <TableCell align="left">{row.wordName}</TableCell>
                     </TableRow>
                 ))}
+                    <TableRow>
+                        <TableCell component="th" scope="row" align="left">
+                        </TableCell>
+                        <TableCell component="th" scope="row" align="left">
+                        </TableCell>
+                        <TableCell component="th" scope="row" align="left">
+                        </TableCell>
+                        <TableCell align="left">
+                        <TextField
+                            // id="outlined-uncontrolled"
+                            label="Enter your word here"
+                            onKeyDown={(e: any) => {
+                                if (e.key === 'Enter') {
+                                    (this.props as any).onWordAdd(e.target.value, (this.props as any).wordListId);
+                                }
+                            }}
+                        />
+                        </TableCell>
+                    </TableRow>
                 </TableBody>
             </Table>
             </TableContainer>
