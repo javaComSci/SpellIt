@@ -93,7 +93,6 @@ export class WordLists extends Component <any, any>{
     }
 
     onWordListClickDelete = (e: any) => {
-        console.log("Delete" + e);
         MakeApiCall("/wordlist/" + e, "DELETE", {})
             .then((res) => {
                 let updatedWordLists = (this.state as any).wordLists.filter((word: any) => word.wordListId != e)

@@ -1,6 +1,5 @@
-
 import {Component} from 'react';
-import DataGrid from 'react-data-grid';
+import WordTable from '../Common/WordTable';
 import MakeApiCall from '../Common/TokenFetch';
 
 export class EditWords extends Component <any, any>{
@@ -11,7 +10,8 @@ export class EditWords extends Component <any, any>{
         let list = params.get('list');
 
         this.state = {
-            list: list
+            list: list,
+            words: []
         }
     }
 
@@ -35,9 +35,29 @@ export class EditWords extends Component <any, any>{
             })
       }
 
+    onWordDelete = (e: any) => {
+        console.log("Delete" + e);
+        MakeApiCall("/word/" + e, "DELETE", {})
+            .then((res) => {
+                let updatedWords = (this.state as any).words.filter((word: any) => word.wordId != e)
+                this.setState({
+                    words: updatedWords,
+                    error: undefined
+                })
+            })
+            .catch ((err) => {
+                this.setState({
+                    words: [],
+                    error: err
+                })
+            })
+    }
+
     render() {
         return <div>
-
+             <WordTable
+                rows={this.state.words}
+                onWordDelete={this.onWordDelete}/>;
         </div>;
     }
 }
